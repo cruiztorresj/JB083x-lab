@@ -16,37 +16,43 @@
  */
 package com.redhat.training.ejb;
 
-import static org.junit.Assert.assertEquals;
+import com.redhat.training.ui.Hello;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
+
+import org.wildfly.arquillian.junit.annotations.WildFlyArquillian;
 
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 
-import com.redhat.training.ui.Hello;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
 
-
-@RunWith(Arquillian.class)
+@WildFlyArquillian
 public class EJBTest {
+
     @Inject
     private Hello hello;
 
     @Deployment
     public static WebArchive createDeployment() {
-        return ShrinkWrap.create(WebArchive.class,"stateless-ejb-test.war").addClass(HelloBean.class).addClass(Hello.class)
-            .addAsManifestResource(EmptyAsset.INSTANCE, ArchivePaths.create("beans.xml"));
+
+        return ShrinkWrap
+            .create(WebArchive.class,"stateless-ejb-test.war")
+            .addClass(HelloBean.class)
+            .addClass(Hello.class)
+            .addAsManifestResource(EmptyAsset.INSTANCE,
+                            ArchivePaths.create("beans.xml"));
     }
 
     @Test
     public void testHelloEJB() {
-    	    hello.setName("John Doe");
+
+        hello.setName("John Doe");
         String result = hello.greet();
-        assertEquals("Hello, John Doe", result);
+        Assertions.assertEquals("Hello, John Doe", result);
     }
 }
