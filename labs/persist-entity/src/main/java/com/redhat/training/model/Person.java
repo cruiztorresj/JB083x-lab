@@ -1,33 +1,46 @@
 package com.redhat.training.model;
-//add required libraries
 
-//add @Entity annotation here
-public class Person {
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-   //add annotations for primary key
+import java.io.Serializable;
+
+@Entity
+public class Person implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //add @Column(name="name") annotation to map column in database table
+    @Column(name = "name")
     private String personName;
 
     public Long getId() {
+
         return id;
     }
 
     public void setId(Long id) {
+
         this.id = id;
     }
 
     public String getPersonName() {
+
         return personName;
     }
 
     public void setName(String personName) {
+
         this.personName = personName;
     }
 
 	@Override
 	public int hashCode() {
+
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
@@ -36,20 +49,35 @@ public class Person {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
+
+		if (this == obj) {
+
+            return true;
+        }
+
+		if (obj == null) {
+
+            return false;
+        }
+
+		if (getClass() != obj.getClass()) {
+
+            return false;
+        }
+
 		Person other = (Person) obj;
+
 		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
+
+			if (other.id != null) {
+
+                return false;
+            }
+		} else if (!id.equals(other.id)) {
+
+            return false;
+        }
+
 		return true;
 	}
-
-    
 }
