@@ -1,9 +1,6 @@
-body {
-	
-}
-
 header {
-	background-color: #C40016;
+	background-color: darkcyan;
+    color: ghostwhite;
 	height: 150px;
 	padding: 10px;
 	width: 95%;
@@ -31,7 +28,8 @@ header .right {
 
 footer {
 	border: 4px solid #000000;
-	background-color: #C40016;
+	background-color: darkcyan;
+    color: ghostwhite;
 	height: 30px;
 	padding: 10px;
 	width: 95%;
