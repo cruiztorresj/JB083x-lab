@@ -20,18 +20,17 @@ import com.redhat.training.ui.Hello;
 
 import jakarta.inject.Inject;
 
-import org.wildfly.arquillian.junit.annotations.WildFlyArquillian;
-
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.container.annotation.ArquillianTest;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-@WildFlyArquillian
+@ArquillianTest
 public class EJBTest {
 
     @Inject
