@@ -1,12 +1,12 @@
 package com.redhat.training.ui;
 
-import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.inject.Named;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
-import javax.inject.Inject;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
+import jakarta.inject.Named;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.inject.Inject;
 
 import com.redhat.training.rest.PersonService;
 
