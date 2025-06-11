@@ -1,10 +1,10 @@
 package com.redhat.training.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Email {
@@ -15,8 +15,7 @@ public class Email {
 
 	private String address;
 
-	//TODO map relationship
-
+    @OneToOne(mappedBy="email")
 	private User user;
 
 	public Long getId() {
@@ -72,6 +71,4 @@ public class Email {
 			return false;
 		return true;
 	}
-
-
 }

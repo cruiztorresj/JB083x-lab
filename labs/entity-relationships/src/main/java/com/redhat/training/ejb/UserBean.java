@@ -4,10 +4,10 @@ package com.redhat.training.ejb;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.ejb.Stateless;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
+import jakarta.ejb.Stateless;
+import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 
 import com.redhat.training.model.UserGroup;
 

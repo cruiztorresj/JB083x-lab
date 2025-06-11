@@ -3,11 +3,11 @@ package com.redhat.training.ui;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import javax.faces.component.UIComponent;
-import javax.faces.component.UISelectItems;
-import javax.faces.context.FacesContext;
-import javax.faces.convert.Converter;
-import javax.faces.convert.FacesConverter;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UISelectItems;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.convert.Converter;
+import jakarta.faces.convert.FacesConverter;
 
 import com.redhat.training.model.UserGroup;
 

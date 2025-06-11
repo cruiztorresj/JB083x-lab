@@ -1,26 +1,25 @@
 package com.redhat.training.ui;
 
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
 
-import javax.annotation.PostConstruct;
-import javax.ejb.Stateless;
-import javax.faces.bean.RequestScoped;
-import javax.faces.event.ValueChangeEvent;
-import javax.inject.Inject;
-import javax.inject.Named;
+import jakarta.annotation.PostConstruct;
+import jakarta.ejb.Stateless;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.event.ValueChangeEvent;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 import com.redhat.training.ejb.UserBean;
 import com.redhat.training.model.User;
 import com.redhat.training.model.UserGroup;
 
-@Named("groupView")
-@Stateless
 @RequestScoped
+@Named("groupView")
+//@Stateless
 public class GroupViewBean {
 
 	private Set<UserGroup> groups;
@@ -82,8 +81,4 @@ public class GroupViewBean {
 			return new ArrayList<User>();
 		}
 	}
-
-
-
-
 }
