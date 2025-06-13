@@ -27,14 +27,10 @@ import jakarta.ws.rs.core.Response.ResponseBuilder;
 
 import com.redhat.training.model.Person;
 
-//TODO Add the stateless annotation
-
-//TODO Add a Path for persons
-
-//TODO Add a Consumes annotation for JSON
-
-//TODO Add a Produces annotation for JSON
-
+@Stateless
+@Path("persons")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 @TransactionManagement(TransactionManagementType.BEAN)
 public class PersonService {
 
@@ -76,19 +72,16 @@ public class PersonService {
 	}
 
 	// CRUD RESTful methods below
-
 	// fetch result by Person id
-	//TODO add GET annotation
+    @GET
+    @Path("{id}")
+	public Person getPerson(@PathParam("id") Long id) {
 
-	//TODO add path for ID
-
-	public Person getPerson(Long id) {
 		return entityManager.find(Person.class, id);
 	}
 
 	// Dump all Person objects in the Database
-	//TODO add GET annotation
-
+    @GET
 	public List<Person> getAllPersons() {
 		TypedQuery<Person> query = entityManager.createQuery("SELECT p FROM Person p", Person.class);
 		List<Person> persons = query.getResultList();
@@ -97,11 +90,9 @@ public class PersonService {
 	}
 
 	// delete an object by Person id
-	//TODO add DELETE annotation
-
-	//TODO add Path for ID
-
-    public void deletePerson(Long id) {
+    @DELETE
+    @Path("{id}")
+    public void deletePerson(@PathParam("id") Long id) {
 			try {
 				try {
 					tx.begin();
@@ -115,8 +106,7 @@ public class PersonService {
     }
 
 	// Save a Person object to Database
-	//TODO add POST annotation
-
+    @POST
 	public Response savePerson(Person person) {
 		try {
 			try {
@@ -143,5 +133,4 @@ public class PersonService {
 			throw new EJBException(e);
 		}
 	}
-
 }
