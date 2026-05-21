@@ -12,7 +12,7 @@ import java.util.List;
 @Stateless
 public class PersonService {
 
-    @PersistenceContext(unitName="hello")
+    @PersistenceContext(unitName="helloPU")
 	private EntityManager entityManager;
 
 	// Get all Person objects in the Database
