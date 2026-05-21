@@ -16,7 +16,7 @@ import com.redhat.training.model.Person;
 
 public class PersonService {
 	
-    @PersistenceContext(unitName = "hello")
+    @PersistenceContext(unitName = "helloPU")
     private EntityManager entityManager;
 
 	// Simple non-RESTy method for JSF bean invocation
