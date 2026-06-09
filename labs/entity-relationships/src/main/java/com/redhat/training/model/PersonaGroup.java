@@ -1,16 +1,16 @@
 package com.redhat.training.model;
 
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
-public class User {
+public class PersonaGroup {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,48 +18,43 @@ public class User {
 
 	private String name;
 
-    @OneToOne
-    @JoinColumn(name="emailID")
-	private Email email;
-
-    @ManyToOne
-    @JoinColumn(name="groupId")
-	private UserGroup userGroup;
+    @OneToMany(mappedBy="personaGroup", fetch = FetchType.EAGER)
+	private Set<Persona> personas;
 
 	public Long getId() {
+
 		return id;
 	}
 
 	public void setId(Long id) {
+
 		this.id = id;
 	}
 
 	public String getName() {
+
 		return name;
 	}
 
 	public void setName(String name) {
+
 		this.name = name;
 	}
 
-	public UserGroup getDepartment() {
-		return userGroup;
+
+	public Set<Persona> getPersonas() {
+
+		return personas;
 	}
 
-	public void setDepartment(UserGroup userGroup) {
-		this.userGroup = userGroup;
-	}
+	public void setPersonas(Set<Persona> personas) {
 
-	public Email getEmail() {
-		return email;
-	}
-
-	public void setEmail(Email email) {
-		this.email = email;
+		this.personas = personas;
 	}
 
 	@Override
 	public int hashCode() {
+
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
@@ -68,28 +63,27 @@ public class User {
 
 	@Override
 	public boolean equals(Object obj) {
+
 		if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		PersonaGroup other = (PersonaGroup) obj;
 		if (id == null) {
-			if (other.id != null)
+			if (other.id != null) {
 				return false;
-		} else if (!id.equals(other.id))
+            }
+		} else if (!id.equals(other.id)) {
 			return false;
+        }
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", group=" + userGroup + ", email=" + email + "]";
+
+		return "PersonaGroup	 [id=" + id + ", name=" + name + "]";
 	}
-
-
-
-
-
 }

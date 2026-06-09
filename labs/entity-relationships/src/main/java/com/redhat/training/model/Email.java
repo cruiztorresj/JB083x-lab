@@ -15,8 +15,8 @@ public class Email {
 
 	private String address;
 
-    @OneToOne(mappedBy="email")
-	private User user;
+    //@OneToOne(mappedBy="email")
+//	private User user;
 
 	public Long getId() {
 		return id;
@@ -25,7 +25,7 @@ public class Email {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+/*
 	public User getUser() {
 		return user;
 	}
@@ -33,7 +33,7 @@ public class Email {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
+*/
 	public String getAddress() {
 		return address;
 	}

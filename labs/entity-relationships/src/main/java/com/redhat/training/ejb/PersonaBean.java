@@ -9,19 +9,19 @@ import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 
-import com.redhat.training.model.UserGroup;
+import com.redhat.training.model.PersonaGroup;
 
 @Stateless
-public class UserBean {
+public class PersonaBean {
 
 	@Inject
 	private EntityManager em;
 
 	//TODO Add JOIN FETCH 
-	public Set<UserGroup> getAllUserGroups(){
-		TypedQuery<UserGroup> query = em.createQuery("SELECT g FROM UserGroup g" , UserGroup.class);
+	public Set<PersonaGroup> getAllPersonaGroups(){
+		TypedQuery<PersonaGroup> query = em.createQuery("SELECT g FROM PersonaGroup g" , PersonaGroup.class);
 
-        return new HashSet<UserGroup>(query.getResultList());
+        return new HashSet<PersonaGroup>(query.getResultList());
 	}
 
 
