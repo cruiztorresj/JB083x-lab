@@ -17,12 +17,9 @@ public class PersonaBean {
 	@Inject
 	private EntityManager em;
 
-	//TODO Add JOIN FETCH 
 	public Set<PersonaGroup> getAllPersonaGroups(){
-		TypedQuery<PersonaGroup> query = em.createQuery("SELECT g FROM PersonaGroup g" , PersonaGroup.class);
+		TypedQuery<PersonaGroup> query = em.createQuery("SELECT g FROM PersonaGroup g JOIN FETCH g.personas" , PersonaGroup.class);
 
         return new HashSet<PersonaGroup>(query.getResultList());
 	}
-
-
 }

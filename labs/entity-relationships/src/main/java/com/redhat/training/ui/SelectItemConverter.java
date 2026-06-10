@@ -37,9 +37,11 @@ public class SelectItemConverter implements Converter {
 
         Set<PersonaGroup> selectItems = null;
         for (UIComponent uic : comp.getChildren()) {
-            if (uic instanceof UISelectItems) {
+
+            if (uic instanceof UISelectItems uisi) {
+                
                 Long itemId = Long.valueOf(value);
-                selectItems = (Set<PersonaGroup>) ((UISelectItems) uic).getValue();
+                selectItems = (Set<PersonaGroup>) uisi.getValue();
 
                 if (itemId != null && selectItems != null && !selectItems.isEmpty()) {
                     Predicate<PersonaGroup> predicate = i -> i.getId().equals(itemId);

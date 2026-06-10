@@ -42,11 +42,14 @@ public class GroupViewBean {
 
 	public void update(ValueChangeEvent event) {
 
-
 		PersonaGroup group = (PersonaGroup) event.getNewValue();
-		personas = new HashSet<Persona>(group.getPersonas());
-//		users = peopleBean.getUsers(group);
+        if (group == null) {
 
+            personas = new HashSet<Persona>();
+		} else {
+
+            personas = new HashSet<Persona>(group.getPersonas());
+        }
 	}
 
 	public Set<PersonaGroup> getGroups() {

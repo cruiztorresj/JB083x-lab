@@ -18,7 +18,7 @@ public class PersonaGroup {
 
 	private String name;
 
-    @OneToMany(mappedBy="personaGroup", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy="personaGroup", fetch = FetchType.LAZY)
 	private Set<Persona> personas;
 
 	public Long getId() {
