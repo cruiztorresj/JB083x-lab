@@ -1,5 +1,6 @@
 package com.redhat.training.ui;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -33,24 +34,36 @@ public class SelectItemConverter implements Converter {
     }
 
     private PersonaGroup getSelectedItemAsEntity(UIComponent comp, String value) {
+
         PersonaGroup item = null;
 
-        Set<PersonaGroup> selectItems = null;
+        Set<PersonaGroup> selectItems = new HashSet<>();
         for (UIComponent uic : comp.getChildren()) {
 
             if (uic instanceof UISelectItems uisi) {
                 
                 Long itemId = Long.valueOf(value);
-                selectItems = (Set<PersonaGroup>) uisi.getValue();
 
-                if (itemId != null && selectItems != null && !selectItems.isEmpty()) {
-                    Predicate<PersonaGroup> predicate = i -> i.getId().equals(itemId);
-                    item = selectItems.stream().filter(predicate).findFirst().orElse(null);
+                if (uisi.getValue() instanceof Set<?> groups && !groups.isEmpty()) {
+
+                    for (Object o : groups) {
+
+                        if (o instanceof PersonaGroup pg) {
+
+                            selectItems.add(pg);
+                        }
+                    }
+                    
+
+                    if (itemId != null) {
+
+                        Predicate<PersonaGroup> predicate = i -> i.getId().equals(itemId);
+                        item = selectItems.stream().filter(predicate).findFirst().orElse(null);
+                    }
                 }
             }
         }
 
         return item;
     }
-
 }
