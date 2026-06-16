@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.Stateless;
-import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.event.ValueChangeEvent;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -20,7 +19,6 @@ import com.redhat.training.model.PersonaGroup;
 
 @Named("groupView")
 @Stateless
-@RequestScoped
 public class GroupViewBean {
 
 	private Set<PersonaGroup> groups;
