@@ -4,26 +4,26 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import javax.annotation.Resource;
-import javax.ejb.EJBException;
-import javax.ejb.Stateless;
-import javax.ejb.TransactionManagement;
-import javax.ejb.TransactionManagementType;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import javax.transaction.UserTransaction;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.ResponseBuilder;
+import jakarta.annotation.Resource;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
+import jakarta.inject.Inject;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
+import jakarta.transaction.UserTransaction;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.ResponseBuilder;
 
 import com.redhat.training.model.Person;
 
@@ -42,8 +42,11 @@ public class PersonService {
 
 	// Simple non-RESTy method for JSF bean invocation
 	public String hello(String name) {
+
 		try {
+
 			try {
+
 				// start a new transaction
 				tx.begin();
 
@@ -67,6 +70,7 @@ public class PersonService {
 				tx.commit();
 			}
 		} catch (Exception e) {
+
 			throw new EJBException(e);
 		}
 	}
@@ -77,12 +81,14 @@ public class PersonService {
 	@GET
 	@Path("{id}")
 	public Person getPerson(@PathParam("id") Long id) {
+
 		return entityManager.find(Person.class, id);
 	}
 
 	// Dump all Person objects in the Database
 	@GET
 	public List<Person> getAllPersons() {
+
 		TypedQuery<Person> query = entityManager.createQuery("SELECT p FROM Person p", Person.class);
 		List<Person> persons = query.getResultList();
 
@@ -93,14 +99,19 @@ public class PersonService {
 	@DELETE
     @Path("{id}")
     public void deletePerson(@PathParam("id") Long id) {
+
 		try {
+
 			try {
+
 				tx.begin();
 				entityManager.remove(getPerson(id));
 			} finally {
+
 				tx.commit();
 			}
 		} catch (Exception e) {
+
 			throw new EJBException();
 		}
     }
@@ -108,16 +119,22 @@ public class PersonService {
 	// Save a Person object to Database
 	@POST
 	public Response savePerson(Person person) {
+
 		try {
+
 			try {
+
 			ResponseBuilder builder;
+
 			if (person.getId() == null) {
+
 				Person newPerson = new Person();
 				newPerson.setName(person.getName());
 				tx.begin();
 				entityManager.persist(newPerson);
 				builder = Response.ok();
 			} else {
+
 				Person uPerson;
 				Person updatePerson = getPerson(person.getId());
 				updatePerson.setName(person.getName());
@@ -127,11 +144,12 @@ public class PersonService {
 
 			return builder.build();
 			}finally {
+
 				tx.commit();
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
+
 			throw new EJBException(e);
 		}
 	}
-
 }
