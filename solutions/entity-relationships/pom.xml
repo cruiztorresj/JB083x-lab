@@ -16,7 +16,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
-    <finalName>entity-relationships</finalName>
+    <build>
+        <finalName>entity-relationships</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>

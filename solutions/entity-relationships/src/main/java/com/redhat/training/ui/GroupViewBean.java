@@ -7,78 +7,87 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
 
-import javax.annotation.PostConstruct;
-import javax.ejb.Stateless;
-import javax.faces.bean.RequestScoped;
-import javax.faces.event.ValueChangeEvent;
-import javax.inject.Inject;
-import javax.inject.Named;
+import jakarta.annotation.PostConstruct;
+import jakarta.ejb.Stateless;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.event.ValueChangeEvent;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
-import com.redhat.training.ejb.UserBean;
-import com.redhat.training.model.User;
-import com.redhat.training.model.UserGroup;
+import com.redhat.training.ejb.PersonaBean;
+import com.redhat.training.model.Persona;
+import com.redhat.training.model.PersonaGroup;
 
 @Named("groupView")
 @Stateless
 @RequestScoped
 public class GroupViewBean {
 
-	private Set<UserGroup> groups;
+	private Set<PersonaGroup> groups;
 
-	private UserGroup currentGroup;
+	private PersonaGroup currentGroup;
 
-	private Set<User> users;
+	private Set<Persona> personas;
 
 	@Inject
 	private Logger log;
 
 	@Inject
-	UserBean peopleBean;
+	PersonaBean peopleBean;
 
 	@PostConstruct
 	public void init() {
+
 		log.info("INIT!!!");
-		groups = peopleBean.getAllUserGroups();
+		groups = peopleBean.getAllPersonaGroups();
 
 	}
 
 	public void update(ValueChangeEvent event) {
 
-		UserGroup group = (UserGroup) event.getNewValue();
-		users = new HashSet<User>(group.getUsers());
+		PersonaGroup group = (PersonaGroup) event.getNewValue();
+		personas = new HashSet<Persona>(group.getPersonas());
 			
 	}
 
-	public Set<UserGroup> getGroups() {
+	public Set<PersonaGroup> getGroups() {
+
 		return groups;
 	}
 
-	public void setGroups(Set<UserGroup> userGroups) {
-		this.groups = userGroups;
+	public void setGroups(Set<PersonaGroup> personaGroups) {
+
+		this.groups = personaGroups;
 	}
 
-	public Set<User> getUsers() {
-		return users;
+	public Set<Persona> getPersonas() {
+
+		return personas;
 	}
 
-	public void setUsers(Set<User> users) {
-		this.users = users;
+	public void setPersonas(Set<Persona> personas) {
+
+		this.personas = personas;
 	}
 
-	public UserGroup getCurrentGroup() {
+	public PersonaGroup getCurrentGroup() {
+
 		return currentGroup;
 	}
 
-	public void setCurrentGroup(UserGroup currentGroup) {
+	public void setCurrentGroup(PersonaGroup currentGroup) {
+
 		this.currentGroup = currentGroup;
 	}
 
-	public List<User> getUserList(){
-		if(users != null) {
-			return new ArrayList<User>(users);
-		}else {
-			return new ArrayList<User>();
+	public List<Persona> getPersonaList() {
+
+		if(personas != null) {
+
+			return new ArrayList<Persona>(personas);
+		} else {
+
+			return new ArrayList<Persona>();
 		}
 	}
-
 }

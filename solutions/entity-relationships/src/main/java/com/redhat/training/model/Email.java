@@ -1,10 +1,10 @@
 package com.redhat.training.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Email {
@@ -16,39 +16,47 @@ public class Email {
 	private String address;
 	
 	@OneToOne(mappedBy="email")
-	private User user;
+	private Persona persona;
 
 	public Long getId() {
+
 		return id;
 	}
 
 	public void setId(Long id) {
+
 		this.id = id;
 	}
 
-	public User getUser() {
-		return user;
+	public Persona getPersona() {
+
+		return persona;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setPersona(Persona persona) {
+
+		this.persona = persona;
 	}
 
 	public String getAddress() {
+
 		return address;
 	}
 
 	public void setAddress(String address) {
+
 		this.address = address;
 	}
 	
 	@Override
 	public String toString() {
+
 		return "Email [id=" + id + "]";
 	}
 	
 	@Override
 	public int hashCode() {
+
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
@@ -57,20 +65,31 @@ public class Email {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+
+		if (obj == this) {
+
 			return true;
-		if (obj == null)
+		} else if (obj == null) {
+
 			return false;
-		if (getClass() != obj.getClass())
+		} else if (getClass() != obj.getClass()) {
+
 			return false;
-		Email other = (Email) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
+        } else {
+
+		    Email other = (Email) obj;
+		    if (id == null) {
+
+			    if (other.id != null) {
+
+				    return false;
+		        } else if (!id.equals(other.id)) {
+
+                    return false;
+                }
+            }
+        }
+
 		return true;
-	}
-	
-	
+	}	
 }
