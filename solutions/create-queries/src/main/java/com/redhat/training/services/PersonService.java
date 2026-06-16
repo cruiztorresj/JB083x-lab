@@ -13,7 +13,7 @@ import com.redhat.training.model.Person;
 @Stateless
 public class PersonService {
 
-    @PersistenceContext(unitName="hello")
+    @PersistenceContext(unitName="CreateQueriesPU")
     private EntityManager entityManager;
 
     // Get all Person objects in the Database
