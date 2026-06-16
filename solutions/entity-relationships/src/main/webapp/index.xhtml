@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
+<ui:composition 
+	xmlns:ui="jakarta.faces.facelets"
+	xmlns:f="jakarta.faces.core"
+	xmlns:h="jakarta.faces.html"
 	template="/WEB-INF/templates/default.xhtml">
 	<ui:define name="title">
 	Group View web app
@@ -30,7 +30,7 @@
 				<h:outputLabel value="Employees:"/>
 				<br class="clear"/>
 				<ul>
-					<ui:repeat value="#{groupView.userList}" var="person">
+					<ui:repeat value="#{groupView.personaList}" var="person">
 						<li>
 							<strong>Name:</strong><h:outputText value="#{person.name}"/><br/>
 							<strong>Email:</strong><h:outputText value="#{person.email.address}"/>
