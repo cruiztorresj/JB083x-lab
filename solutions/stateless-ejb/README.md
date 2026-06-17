@@ -1,7 +1,7 @@
-# JB125 Java EE 7 Hello World web App
+# stateless-ejb
 
-##This app is composed of the following architecture:
+### This app is composed of the following architecture:
 
 * Maven Project - builds a WAR
-* Using JSF 2.2 for web interface, HTML5 facelets page, JSF backing beans, CDI scopes on beans, @Named
+* Using JSF 4.1 for web interface, HTML5 facelets page, JSF backing beans, CDI scopes on beans, @Named
 * Stateless EJB for Business Logic (sayHello) 
