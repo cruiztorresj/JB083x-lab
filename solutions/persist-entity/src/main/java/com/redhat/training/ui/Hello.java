@@ -1,36 +1,39 @@
 package com.redhat.training.ui;
 
-import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.inject.Named;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
+import java.util.List;
+
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
 
 import com.redhat.training.model.Person;
 import com.redhat.training.services.PersonService;
 
-import javax.inject.Inject;
-import java.util.List;
-
-
-
 @RequestScoped
 @Named("hello")
 public class Hello {
-	private String name;
+	
+    private String name;
 	private Long id;
 
 	@Inject
 	private PersonService personService;
 
 	public void sayHello() {
+
 		try {
+
 			String response = personService.hello(name);
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(response));
-		}catch(Exception e){
+		} catch(Exception e) {
+
 			System.out.println(e.getCause());
 			if(e.getCause() != null && e.getCause() instanceof ConstraintViolationException) {
+
 				ConstraintViolationException ex = (ConstraintViolationException) e.getCause();
 				String violations = "";
 				for(ConstraintViolation<?> cv: ex.getConstraintViolations()) {
@@ -39,6 +42,7 @@ public class Hello {
 					
 					System.out.println("Violations: "+violations);
 				}
+
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(violations));
 			}
 			
@@ -47,27 +51,35 @@ public class Hello {
 	}
 
 	public String getName() {
+
 		return name;
 	}
 
 	public void setName(String name) {
+
 		this.name = name;
 	}
 	
 	public Long getId() {
+
         return id;
     }
 
     public void setId(Long id) {
+
         this.id = id;
     }
     
     public void getPerson() {
+
     	try {
+
 			String response = personService.getPerson(id);
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(response));
-		}catch(Exception e){
+		} catch(Exception e) {
+
 			System.out.println(e.getCause());
+
 			if(e.getCause() != null && e.getCause() instanceof ConstraintViolationException) {
 				ConstraintViolationException ex = (ConstraintViolationException) e.getCause();
 				String violations = "";
@@ -77,6 +89,7 @@ public class Hello {
 					
 					System.out.println("Violations: "+violations);
 				}
+
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(violations));
 			}
 			
@@ -86,11 +99,7 @@ public class Hello {
     
 	
 	public List<Person> getPersons() {
-		return personService.getAllPersons();
-		
-	}
-	
-	
-	
 
+		return personService.getAllPersons();		
+	}
 }
